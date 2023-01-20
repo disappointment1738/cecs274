@@ -22,13 +22,13 @@ class Ant(Insect, MobileCritter):
     def move_up(self):
         """moves this ant's position 2 units up"""
         # need to check if ant touches border, if yes, end.
-        # if no, continue and move one
+        # if no, continue and move 2
         raise NotImplementedError()
 
     def move_down(self):
         """moves this ant's position 2 units down"""
         # need to check if ant touches border, if yes, end.
-        # if no, continue and move one
+        # if no, continue and move 2
         raise NotImplementedError()
 
     def __str__(self):

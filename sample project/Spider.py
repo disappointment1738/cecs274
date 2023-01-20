@@ -15,7 +15,7 @@ class Spider(Insect, MobileCritter):
     def move_left(self):
         """moves this spider's position 2 units left"""
         # need to check if ant touches border, if yes, end.
-        # if no, continue and move one
+        # if no, continue and move 2
         raise NotImplementedError()
 
     def move_up(self):
@@ -27,7 +27,7 @@ class Spider(Insect, MobileCritter):
     def move_down(self):
         """moves this spider's position 2 units down"""
         # need to check if ant touches border, if yes, end.
-        # if no, continue and move one
+        # if no, continue and move 2
         raise NotImplementedError()
 
     def __str__(self):
