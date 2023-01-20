@@ -8,16 +8,24 @@ Lab for week 1, spring 2023
 INTERFACES
 
 1. (1 pt) Explain the difference between a data structure’s interface and its implementation.
+
+
+
 2. (1 pt) True or False: An interface is also referred to as an abstract data type.
+
+
+
 3. (1 pt) True or False: If two or more data structures implement a same interface, then they
 will have the same functionalities and same run-time efficiencies.
+
+
 
 4. (a) (2 pts) Complete the sample project and submit it to the appropriate CodePost folder.
 The score you receive on CodePost will be the number of points you receive for this part
 of the lab activities. You can find directions for the sample project under Beachboard »
 Content » Module 1.
 
-(b) (1 pt) Research: What is the purpose of from ... in each import statement of the
+(b) (1 pt) Research: What is the purpose of 'from ...' in each import statement of the
 header to the main.py file?
 from Spider import Spider
 from Ant import Ant
@@ -30,6 +38,8 @@ class Ant(Insect, MobileCritter):
 class Spider(Insect, MobileCritter):
 ...
 What is this syntax actually indicating?
+
+This syntax is actually indicating 
 
 
 5. (1 pt) A UML (Unified Modeling Language) diagram depicts the relationships between two
