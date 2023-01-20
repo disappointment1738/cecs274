@@ -1,103 +1,87 @@
-"""
-MODULE 1 LAB ACTIVITIES
-
-Lab for week 1, spring 2023
-"""
-
-"""
-INTERFACES
-
-1. (1 pt) Explain the difference between a data structure’s interface and its implementation.
-
-
-
-2. (1 pt) True or False: An interface is also referred to as an abstract data type.
-
-
-
-3. (1 pt) True or False: If two or more data structures implement a same interface, then they
-will have the same functionalities and same run-time efficiencies.
-
-
-
-4. (a) (2 pts) Complete the sample project and submit it to the appropriate CodePost folder.
-The score you receive on CodePost will be the number of points you receive for this part
-of the lab activities. You can find directions for the sample project under Beachboard »
-Content » Module 1.
-
-(b) (1 pt) Research: What is the purpose of 'from ...' in each import statement of the
-header to the main.py file?
 from Spider import Spider
 from Ant import Ant
 from Board import Board
-
-(c) (1 pt) Research: Notice that both the Ant and Spider classes seem to take arguments
-Insect and MobileCritter in the declaration of the class:
-class Ant(Insect, MobileCritter):
-...
-class Spider(Insect, MobileCritter):
-...
-What is this syntax actually indicating?
-
-This syntax is actually indicating 
+import time
 
 
-5. (1 pt) A UML (Unified Modeling Language) diagram depicts the relationships between two
-or more classes, data structures, interfaces, etc. in a program design. The symbol used to
-denote interface implementation is a dashed arrow with open tip from the data structure
-or class to the interface. For example, the UML diagram for the sample project would look
-like the following:
+def main():
+    print("Welcome to Hungry Critter!")
+    board = Board()
+    choice = input("Choose your critter:\n1 - ANT\n2 - SPIDER\nQ - QUIT\n\nYour selection: ")
 
-This diagram says that the Ant and Spider classes implement the methods of the MobileCritter
-interface. Hence, if we instantiate an Ant or Spider object, we are expecting to be able to
-call any of the methods listed in the MobileCritter interface on the object. Moreover, Ant
-and Spider override the __str__ method, i.e., they define the string that should be returned
-when the function str() is called on an object of the class.
-Now, consider the UML diagram below:
+    while choice.upper() != 'Q':
+        if choice != '1' and choice != '2' and choice.upper() != 'Q':
+            print("Invalid selection.  Please try again.")
+            choice = input("Choose your critter:\n1 - ANT\n2 - SPIDER\nQ - QUIT.\n\nYour selection: ")
+        elif choice.upper() == 'Q':
+            print("Not even one round? Okay, goodbye! :(")
+        else:
+            if choice == '1':
+                critter = Ant()
+                print(
+                    u"\nYou have selected ANT \u1F41C.\nANT moves 1 unit when moving RIGHT/LEFT, but 2 units when "
+                    u"moving UP/DOWN.\nLeaf count:",
+                    critter.get_leaves())
 
-(a) (1 pt) True or False: The methods listed in the Queue interface are fully implemented.
-(b) (1 pt) What methods does the ArrayQueue data structure implement?
-(c) (1 pt) What methods does the SLLQueue data structure implement?
-"""
+            elif choice == '2':
+                critter = Spider()
+                print(
+                    u"\nYou have selected SPIDER  \u1F577.\nSPIDER moves 1 unit RIGHT/UP, but 2 units when moving "
+                    u"LEFT/DOWN.\nLeaf count:",
+                    critter.get_leaves())
 
-"""
-RUN-TIME
+            collected_leaf, hit_boundary = board.place_critter(critter)
+            if collected_leaf:
+                print("Your critter got lucky and collected a leaf at the starting point!\nNew Leaf Count:",
+                      critter.get_leaves())
+            print("\nLoading game...")
+            time.sleep(3)
+            board.display(critter)
+            break
 
-1. (1 pt each) Determine the big-O run-time for each algorithm below.
-(a) 
+    if choice.upper() != 'Q':
+        print("\nTo play, move your critter so that it collects as many leaves as possible.")
+        time.sleep(4)
+        print("Your critter can only collect a leaf if it lands on the exact location of the  leaf.")
+        time.sleep(4)
+        print("Be careful! If your critter touches or crosses a border, it's GAME OVER!\n\t\tLET\'S PLAY!")
+        time.sleep(4)
+        choice = input("\n\nSelect a direction to move in:\n1 - RIGHT\t2 - LEFT\t3 - UP\t4 - DOWN\tQ - QUIT\n\nYour "
+                       "selection: ")
 
-def clone(array):
-    # returns a copy of the given array
-    copy = []
-    for e in array:
-        copy.append(e)
-    return copy
+        while choice.upper() != 'Q':
+            if choice != '1' and choice != '2' and choice != '3' and choice != '4' and choice.upper() != 'Q':
+                print('Invalid selection.  Please try again.')
+            else:
+                if choice == '1':
+                    critter.move_right()
+                elif choice == '2':
+                    critter.move_left()
+                elif choice == '3':
+                    critter.move_up()
+                elif choice == '4':
+                    critter.move_down()
 
-(b) 
-def integer_div(a, b):
-    #performs integer division a//b 
-    count = 0
-    total = b
-    while total <= a:
-        total += b
-        count += 1
-    return count
+                collected_leaf, hit_boundary = board.place_critter(critter)
 
-(c) 
-def mod(a : int, b : int):
-# returns the remainder of a divided by b
-    if b <= 0:
-        return -100
-    quotient = a // b
-    return a - quotient * b
+                if hit_boundary:
+                    print("\n\nYour critter HIT A BOUNDARY!!!\n\nGAME OVER!!!!\n\nFinal score:", critter.get_leaves())
+                    choice = 'Q'
+                    continue
+                if collected_leaf:
+                    print("\n\nYour critter COLLECTED A LEAF!!!\nNew Score:", critter.get_leaves(), "\n\n")
+                    time.sleep(2)
+
+                board.display(critter)
+                print("\nYour critter\'s new position:", str(critter.get_position()), "\nCurrent leaves:",
+                      critter.get_leaves())
+                choice = input(
+                    "\n\nSelect a direction to move in:\n1 - RIGHT\t2 - LEFT\t3 - UP\t4 - DOWN\tQ - QUIT\n\nYour "
+                    "selection: ")
+
+        print("\n\nGOODBYE!!!!\n\nFinal score:", critter.get_leaves())
+    else:
+        print("\n\nGOODBYE!!!")
 
 
-2. (1 pts) Which of the following are equivalent to O(N)? Why?
-• O(4N)
-• O(N + 3P) where P < N/2
-• O(N + log N)
-• O(N + N log N)
-• O(N + M)
-
-O(4N) is equivalent to O(N) 
-"""
+main()
