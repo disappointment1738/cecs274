@@ -9,26 +9,26 @@ class Ant(Insect, MobileCritter):
 
     def move_right(self):
         """moves this ant's position 1 unit right"""
-        x = Ant.get_position()[0]
-        y = Ant.get_position()[1]
+        x = self.get_position()[0]
+        y = self.get_position()[1]
         self.position = [x+1, y]
 
     def move_left(self):
         """moves this ant's position 1 unit left"""
-        x = Ant.get_position()[0]
-        y = Ant.get_position()[1]
+        x = self.get_position()[0]
+        y = self.get_position()[1]
         self.position = [x-1, y]
 
     def move_up(self):
         """moves this ant's position 2 units up"""
-        x = Ant.get_position()[0]
-        y = Ant.get_position()[1]
+        x = self.get_position()[0]
+        y = self.get_position()[1]
         self.position = [x, y+2]
 
     def move_down(self):
         """moves this ant's position 2 units down"""
-        x = Ant.get_position()[0]
-        y = Ant.get_position()[1]
+        x = self.get_position()[0]
+        y = self.get_position()[1]
         self.position = [x, y-2]
 
     def __str__(self):
