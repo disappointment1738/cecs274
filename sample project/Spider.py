@@ -8,27 +8,19 @@ class Spider(Insect, MobileCritter):
 
     def move_right(self):
         """moves this spider's position 1 unit right"""
-        # need to check if ant touches border, if yes, end.
-        # if no, continue and move one
-        raise NotImplementedError()
+        MobileCritter.move_right()
 
     def move_left(self):
         """moves this spider's position 2 units left"""
-        # need to check if ant touches border, if yes, end.
-        # if no, continue and move 2
-        raise NotImplementedError()
+        MobileCritter.move_left()
 
     def move_up(self):
         """moves this spider's position 1 unit up"""
-        # need to check if ant touches border, if yes, end.
-        # if no, continue and move one
-        raise NotImplementedError()
+        MobileCritter.move_up()
 
     def move_down(self):
         """moves this spider's position 2 units down"""
-        # need to check if ant touches border, if yes, end.
-        # if no, continue and move 2
-        raise NotImplementedError()
+        MobileCritter.move_down()
 
     def __str__(self):
         return u'\u1F577'
