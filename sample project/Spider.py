@@ -8,19 +8,27 @@ class Spider(Insect, MobileCritter):
 
     def move_right(self):
         """moves this spider's position 1 unit right"""
-        MobileCritter.move_right()
+        x = Spider.get_position()[0]
+        y = Spider.get_position()[1]
+        self.position = [x+1, y]
 
     def move_left(self):
         """moves this spider's position 2 units left"""
-        MobileCritter.move_left()
+        x = Spider.get_position()[0]
+        y = Spider.get_position()[1]
+        self.position = [x-2, y]
 
     def move_up(self):
         """moves this spider's position 1 unit up"""
-        MobileCritter.move_up()
+        x = Spider.get_position()[0]
+        y = Spider.get_position()[1]
+        self.position = [x, y+1]
 
     def move_down(self):
         """moves this spider's position 2 units down"""
-        MobileCritter.move_down()
+        x = Spider.get_position()[0]
+        y = Spider.get_position()[1]
+        self.position = [x, y-2]
 
     def __str__(self):
         return u'\u1F577'
