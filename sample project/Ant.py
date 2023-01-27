@@ -12,24 +12,28 @@ class Ant(Insect, MobileCritter):
         x = self.get_position()[0]
         y = self.get_position()[1]
         self.position = [x+1, y]
+        # self.position[0]+1
 
     def move_left(self):
         """moves this ant's position 1 unit left"""
         x = self.get_position()[0]
         y = self.get_position()[1]
         self.position = [x-1, y]
+        # self.position[0]-1
 
     def move_up(self):
         """moves this ant's position 2 units up"""
         x = self.get_position()[0]
         y = self.get_position()[1]
         self.position = [x, y+2]
+        # self.position[1]+2
 
     def move_down(self):
         """moves this ant's position 2 units down"""
         x = self.get_position()[0]
         y = self.get_position()[1]
         self.position = [x, y-2]
+        # self.position[1]-2
 
     def __str__(self):
         return u'\u1F41C'

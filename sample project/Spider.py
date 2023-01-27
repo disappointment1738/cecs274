@@ -11,24 +11,28 @@ class Spider(Insect, MobileCritter):
         x = self.get_position()[0]
         y = self.get_position()[1]
         self.position = [x+1, y]
+        # self.position[0]+1
 
     def move_left(self):
         """moves this spider's position 2 units left"""
         x = self.get_position()[0]
         y = self.get_position()[1]
         self.position = [x-2, y]
+        # self.position[0]-2
 
     def move_up(self):
         """moves this spider's position 1 unit up"""
         x = self.get_position()[0]
         y = self.get_position()[1]
         self.position = [x, y+1]
+        # self.position[1]+1
 
     def move_down(self):
         """moves this spider's position 2 units down"""
         x = self.get_position()[0]
         y = self.get_position()[1]
         self.position = [x, y-2]
+        # self.position[1]-2
 
     def __str__(self):
         return u'\u1F577'
