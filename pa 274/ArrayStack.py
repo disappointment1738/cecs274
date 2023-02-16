@@ -27,27 +27,67 @@ class ArrayStack(Stack, List):
         '''
             Resize the array
         '''
-        pass 
+        # create new array with double capacity
+        self.b = self.new_array(max(1, 2 * self.n))
+        # copy elements from a into the new array
+        for i in range(0, self.n):
+            self.b[i] = self.a[i]
+        # reassign a to reference the new array
+        self.a = self.b
 
     def get(self, i : int) -> object:
-        pass 
+        """return the value of the element i in the List"""
+        # check if i is a valid input
+        if i < 0 or i >= self.n: 
+            raise IndexError()
+        # return value in a at index i
+        return self.a[i]
     
     def set(self, i : int, x : object) -> object:
-        pass 
+        """set the value of the element at the i-th position to be x
+        returns the value of teh element that was replaced"""
+        # check if i is a valid input
+        if i < 0 or i >= self.n: 
+            raise IndexError()
+        old = self.a[i] # temp variable
+        # replace the element
+        self.a[i] = x
+        return old
     
     def add(self, i: int, x : object) :
         '''
             shift all j > i one position to the right
             and add element x in position i
         '''
-        pass 
+        # check if i is a valid input
+        if i < 0 or i >= self.n: 
+            raise IndexError()
+        # check if the invariant holds. if it doesn't, resize the list
+        if len(self.a) == self.n:
+            self.a.resize()
+        # shifting forward loop
+        for i in range(self.n-1, i, -1):
+            self.a[i+1] = self.a[i]
+        self.a[i] = x # overwriting new value
+        self.n = self.n + 1 # incrementing num of elements
 
     def remove(self, i : int) -> object :
         '''
             remove element i and shift all j > i one 
             position to the left
         '''
-        pass 
+        # check if i is a valid input
+        if i < 0 or i >= self.n: 
+            raise IndexError()
+        # set temp variable 
+        x = self.a[i]
+        # removing loop
+        for i in range(i, self.n-1):
+            self.a[i] = self.a[i+1]
+        n  = n -1
+        # check if the invariant holds. if it doesn't, resize the list
+        if len(self.a) == self.n:
+            self.a.resize()
 
     def push(self, x : object) :
         self.add(self.n, x)
