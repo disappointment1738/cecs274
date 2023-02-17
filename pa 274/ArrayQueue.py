@@ -18,7 +18,7 @@ class ArrayQueue(Queue):
         # create new array with capacity 2n
         self.b = new_array(min(1, 2 * self.n))
         # copy the elements from a to b
-        for k in range(0,self.n):
+        for k in range(0, self.n):
             self.b[k] = self.a[ (self.j + k) % len(self.a) ]
         # assign a to the new array
         self.a = self.b
