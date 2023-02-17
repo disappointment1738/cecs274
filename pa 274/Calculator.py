@@ -1,4 +1,4 @@
-import numpy as np
+#import numpy as np
 import ArrayStack
 #import BinaryTree
 #import ChainedHashTable
@@ -14,7 +14,7 @@ class Calculator:
         self.dict.add(k, v)
 
     def matched_expression(self, s: str) -> bool:
-        a = ArrayStack.new_array()
+        a = ArrayStack()
         # iterate through the string to check 
         for i in range(0, len(s)):
             # check if there is a open parenthesis at a part
@@ -41,3 +41,6 @@ class Calculator:
     def evaluate(self, exp):
         parseTree = self.build_parse_tree(exp)
         return self._evaluate(parseTree.r)
+
+x = Calculator()
+x.matched_expression('(3+x)(2(x-1)+7)')
