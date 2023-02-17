@@ -64,10 +64,10 @@ class ArrayStack(Stack, List):
             raise IndexError()
         # check if the invariant holds. if it doesn't, resize the list
         if len(self.a) == self.n:
-            self.a.resize()
+            self.resize()
         # shifting forward loop
         for i in range(self.n-1, i, -1):
-            self.a[i+1] = self.a[i]
+            self.a[i + 1] = self.a[i]
         self.a[i] = x # overwriting new value
         self.n = self.n + 1 # incrementing num of elements
 
@@ -82,12 +82,12 @@ class ArrayStack(Stack, List):
         # set temp variable 
         x = self.a[i]
         # removing loop
-        for i in range(i, self.n-1):
-            self.a[i] = self.a[i+1]
-        n  = n -1
+        for i in range(i, self.n - 1):
+            self.a[i] = self.a[i + 1]
+        self.n  = self.n - 1
         # check if the invariant holds. if it doesn't, resize the list
         if len(self.a) == self.n:
-            self.a.resize()
+            self.resize()
 
     def push(self, x : object) :
         self.add(self.n, x)

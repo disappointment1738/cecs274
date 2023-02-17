@@ -32,7 +32,7 @@ class ArrayQueue(Queue):
         '''
         # check the invariant (n <= len(a) <= 3n)
         if len(self.a) == self.n:
-            self.a.resize()
+            self.resize()
         # add x to the backing array at index j+n mod len(a) (i.e., at the tail)
         self.a[ (self.j + self.n) % len(self.a) ] = x
         # increment by 1
@@ -53,7 +53,7 @@ class ArrayQueue(Queue):
         self.n = self.n - 1
         # check if the invariant holds
         if len(self.a) > 3 * self.n:
-            self.a.resize()
+            self.resize()
         # return the value that was removed
         return x
 
