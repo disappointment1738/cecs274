@@ -19,10 +19,10 @@ class Calculator:
         for i in range(0, len(s)):
             # check if there is a open parenthesis at a part
             if s[i] == '(':
-                a.add(i, s[i])
+                a.push(s[i])
             # check if there is a closed parenthesis at a part
             if s[i] == ')':
-                a.remove(i)
+                a.remove(len(a) - 1)
         # if the list is empty, then there's no unmatched parenthesises, which makes the expression valid
         if len(a) == 0:
             return True
