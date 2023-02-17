@@ -13,5 +13,4 @@ class RandomQueue(ArrayQueue):
             You can call the method of the parent class using super(). e.g.
             super().remove()
         '''
-        # todo
-        pass
+        randomInt = random.randint()

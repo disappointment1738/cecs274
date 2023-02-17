@@ -2,12 +2,12 @@ import Book
 import ArrayList
 import ArrayQueue
 import RandomQueue
-import DLList
-import SLLQueue
-import ChainedHashTable
-import BinarySearchTree
-import BinaryHeap
-import AdjacencyList
+#import DLList
+#import SLLQueue
+#import ChainedHashTable
+#import BinarySearchTree
+#import BinaryHeap
+#import AdjacencyList
 import time
 
 
