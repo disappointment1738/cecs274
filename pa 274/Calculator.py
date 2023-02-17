@@ -14,7 +14,7 @@ class Calculator:
         self.dict.add(k, v)
 
     def matched_expression(self, s: str) -> bool:
-        a = ArrayStack()
+        a = ArrayStack.ArrayStack()
         # iterate through the string to check 
         for i in range(0, len(s)):
             # check if there is a open parenthesis at a part
@@ -22,7 +22,7 @@ class Calculator:
                 a.add(i, s[i])
             # check if there is a closed parenthesis at a part
             if s[i] == ')':
-                a.remove()
+                a.remove(i)
         # if the list is empty, then there's no unmatched parenthesises, which makes the expression valid
         if len(a) == 0:
             return True

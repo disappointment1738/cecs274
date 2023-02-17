@@ -38,7 +38,7 @@ class ArrayStack(Stack, List):
     def get(self, i : int) -> object:
         """return the value of the element i in the List"""
         # check if i is a valid input
-        if i < 0 or i >= self.n: 
+        if i < 0 or i > self.n: 
             raise IndexError()
         # return value in a at index i
         return self.a[i]
@@ -47,7 +47,7 @@ class ArrayStack(Stack, List):
         """set the value of the element at the i-th position to be x
         returns the value of teh element that was replaced"""
         # check if i is a valid input
-        if i < 0 or i >= self.n: 
+        if i < 0 or i > self.n: 
             raise IndexError()
         old = self.a[i] # temp variable
         # replace the element
@@ -60,7 +60,7 @@ class ArrayStack(Stack, List):
             and add element x in position i
         '''
         # check if i is a valid input
-        if i < 0 or i >= self.n: 
+        if i < 0 or i > self.n: 
             raise IndexError()
         # check if the invariant holds. if it doesn't, resize the list
         if len(self.a) == self.n:
@@ -77,7 +77,7 @@ class ArrayStack(Stack, List):
             position to the left
         '''
         # check if i is a valid input
-        if i < 0 or i >= self.n: 
+        if i < 0 or i > self.n: 
             raise IndexError()
         # set temp variable 
         x = self.a[i]

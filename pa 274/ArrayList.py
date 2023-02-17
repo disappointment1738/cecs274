@@ -46,7 +46,7 @@ class ArrayList(List):
             i: Index that is integer non negative and at most n
         '''
         # check if i is a valid input
-        if i < 0 or i >= self.n:
+        if i < 0 or i > self.n:
             raise IndexError()
         # return the value at the index i, i is relative to the user
         return self.a[ (self.j + i) % len(self.a) ]
@@ -59,7 +59,7 @@ class ArrayList(List):
             x: Object type, i.e., any object 
         '''
         # check if i is a valid input
-        if i < 0 or i >= self.n:
+        if i < 0 or i > self.n:
             raise IndexError()
         # set the index at certain point to the input x
         self.a[ (self.j + i) % len(self.a) ] = x
@@ -77,7 +77,7 @@ class ArrayList(List):
                 x: Object type, i.e., any object
         '''
         # check if i is a valid input
-        if i < 0 or i >= self.n:
+        if i < 0 or i > self.n:
             raise IndexError()
         # check the invariant 
         if len(self.a) == self.n:
@@ -97,7 +97,7 @@ class ArrayList(List):
 
     def remove(self, i: int) -> object:
         # check if i is a valid input
-        if i < 0 or i >= self.n:
+        if i < 0 or i > self.n:
             raise IndexError()
         # temp variable to store value being replaced 
         x = self.a[ (self.j + i) % len(self.a) ]
