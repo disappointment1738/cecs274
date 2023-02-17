@@ -15,20 +15,47 @@ class ArrayQueue(Queue):
         '''
             Resize the array
         '''
-        pass
+        # create new array with capacity 2n
+        self.b = new_array(min(1, 2 * self.n))
+        # copy the elements from a to b
+        for k in range(0,n):
+            self.b[k] = a[ (self.j + k) % len(self.a) ]
+        # assign a to the new array
+        self.a = self.b
+        # set the head of the index, j, to 0.
+        self.j = 0
 
     def add(self, x: object):
         '''
             shift all j > i one position to the right
             and add element x in position i
         '''
-        pass
+        # check the invariant (n <= len(a) <= 3n)
+        if len(self.a) == self.n:
+            self.a.resize()
+        # add x to the backing array at index j+n mod len(a) (i.e., at the tail)
+        self.a[ (self.j + self.n) % len(self.a) ] = x
+        # increment by 1
+        self.n = self.n + 1
 
     def remove(self) -> object:
         '''
             remove the first element in the queue
         '''
-        pass
+        # check if i is a valic input
+        if self.n <= 0:
+            raise IndexError()
+        # temp variable to store value that will be removed
+        x = self.a[self.j]
+        # increment j by 1 mod len(a)
+        self.j = (self.j + 1) % len(self.a)
+        # decrement n by 1
+        self.n = self.n - 1
+        # check if the invariant holds
+        if len(self.a) > 3 * self.n:
+            self.a.resize()
+        # return the value that was removed
+        return x
 
     def size(self):
         return self.n
