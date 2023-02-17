@@ -66,7 +66,7 @@ class ArrayStack(Stack, List):
         if len(self.a) == self.n:
             self.resize()
         # shifting forward loop
-        for i in range(self.n-1, i, -1):
+        for i in range(self.n-1, i + 1, -1):
             self.a[i + 1] = self.a[i]
         self.a[i] = x # overwriting new value
         self.n = self.n + 1 # incrementing num of elements

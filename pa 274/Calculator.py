@@ -41,6 +41,3 @@ class Calculator:
     def evaluate(self, exp):
         parseTree = self.build_parse_tree(exp)
         return self._evaluate(parseTree.r)
-
-x = Calculator()
-x.matched_expression('(3+x)(2(x-1)+7)')
