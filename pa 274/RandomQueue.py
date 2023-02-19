@@ -13,4 +13,21 @@ class RandomQueue(ArrayQueue):
             You can call the method of the parent class using super(). e.g.
             super().remove()
         '''
-        randomInt = random.randint()
+        # check if n is a valid length
+        if self.n < 1:
+            raise IndexError()
+        # generate a random number
+        r = random.randint(0, self.n - 1)
+        # store head of the array
+        head = self.a[ self.j % len(self.a) ]
+        # store random index in array that will be removed and returned later
+        removed = self.a[ (self.j + r) % len(self.a) ]
+        # put head in the random index
+        self.a[ (self.j + r) % len(self.a) ] = head
+        # remove the head 
+        super().remove()
+        # check the invariant
+        if len(self.a_) > 3 * len(self.a):
+            super.resize()
+        # return the removed value
+        return removed
