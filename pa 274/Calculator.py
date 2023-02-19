@@ -15,19 +15,15 @@ class Calculator:
 
     def matched_expression(self, s: str) -> bool:
         a = ArrayStack.ArrayStack()
-        # iterate through the string to check 
-        for i in range(0, len(s)):
-            # check if there is a open parenthesis at a part
-            if s[i] == '(':
-                a.push(s[i])
-            # check if there is a closed parenthesis at a part
-            if s[i] == ')':
-                a.remove(len(a) - 1)
-        # if the list is empty, then there's no unmatched parenthesises, which makes the expression valid
-        if len(a) == 0:
-            return True
-        else:
-            return False
+        # checking the parenthesis in string s
+        for c in s:
+            if c == '(':
+                a.push(c)
+            elif c == ')':
+                # used to ensure that the opening and closing parentheses in the input string s match properly
+                if a.size() == 0 or a.pop() != '(':
+                    return False
+        return a.size() == 0
 
     def build_parse_tree(self, exp: str) -> str:
         # todo

@@ -97,10 +97,10 @@ class BookStore:
         # keeping track of num of results (i.e., book titles containing infix)
         count = 0
         # iterate over the book catalog 
-        for title in self.bookCatalog:
+        for book in self.bookCatalog:
             # checking if a book title contains what the user is searching for <-- i.e., if infix is in title
-            if infix in title:
-                print(title.title)
+            if infix in book.title:
+                print(book)
                 count += 1
                 # checking if the num of results (count) is valid (i.e., less than or equal to cnt)
                 # this is keeping track of the amount of book titles that are being printed
