@@ -27,7 +27,7 @@ class RandomQueue(ArrayQueue):
         # remove the head 
         super().remove()
         # check the invariant
-        if len(self.a_) > 3 * len(self.a):
+        if len(self.a) > 3 * len(self.a):
             super.resize()
         # return the removed value
         return removed

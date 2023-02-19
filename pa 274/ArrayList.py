@@ -30,9 +30,9 @@ class ArrayList(List):
         resize: Create a new array and copy the old values. 
         '''
         # create new array with capacity 2n
-        self.b = new_array(min(1, 2 * self.n))
+        self.b = self.new_array(max(1, 2 * self.n))
         # copy the elements from a to b
-        for k in range(0,self.n):
+        for k in range(0, self.n):
             self.b[k] = self.a[ (self.j + k) % len(self.a) ]
         # assign a to the new array
         self.a = self.b
@@ -86,6 +86,7 @@ class ArrayList(List):
         if i < self.n / 2:
             for k in range(0, i):
                 self.a[ (self.j + k - 1) % len(self.a) ] = self.a[ (self.j + k) % len(self.a) ]
+            self.j = self.j - 1
         # shift forwards if i is in the second half of the list
         else:
             for k in range(self.n - 1, i - 1, -1):

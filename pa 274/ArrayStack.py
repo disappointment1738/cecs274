@@ -88,6 +88,7 @@ class ArrayStack(Stack, List):
         # check if the invariant holds. if it doesn't, resize the list
         if len(self.a) > 3 * self.n:
             self.resize()
+        return x
 
     def push(self, x : object) :
         self.add(self.n, x)
