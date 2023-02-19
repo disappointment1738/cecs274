@@ -86,14 +86,21 @@ class BookStore:
             elapsed_time = time.time() - start_time
             print(f"Added to shopping cart {s} \n{elapsed_time} seconds")
 
-    def searchBookByInfix(self, infix: str):
+    def searchBookByInfix(self, infix: str, cnt: int):
         '''
         searchBookByInfix: Search all the books that contains infix
         input: 
             infix: A string    
+            cnt: An int
         '''
         start_time = time.time()
-        # todo
+        count = 0
+        for title in self.bookCatalog:
+            if infix in title:
+                print(title)
+                count += 1
+                if count > cnt:
+                    break
         elapsed_time = time.time() - start_time
         print(f"searchBookByInfix Completed in {elapsed_time} seconds")
 
