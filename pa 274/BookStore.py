@@ -94,6 +94,7 @@ class BookStore:
             cnt: An int
         '''
         start_time = time.time()
+        # keeping track of num of results (i.e., book titles containing infix)
         count = 0
         # iterate over the book catalog 
         for title in self.bookCatalog:
