@@ -17,7 +17,7 @@ class SLLStack(Stack):
         # create a new node `u` storing data
         u = self.Node(x)
         # assign the node after `u` to be the head
-        u.next = self.next
+        u.next = self.head
         # assign `u` as the new head
         self.head = u
         # check the invartiant: does the tail need to be updated?
