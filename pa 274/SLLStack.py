@@ -14,8 +14,17 @@ class SLLStack(Stack):
         self.n = 0
 
     def push(self, x: object):
-        # todo
-        pass
+        # create a new node `u` storing data
+        u = self.Node(x)
+        # assign the node after `u` to be the head
+        u.next = self.next
+        # assign `u` as the new head
+        self.head = u
+        # check the invartiant: does the tail need to be updated?
+        if self.n == 0:
+            self.tail = u
+        # increment num of nodes by 1
+        self.n += 1
 
     def pop(self) -> object:
         # check the precodition: if n = 0, return nil
