@@ -14,8 +14,17 @@ class SLLQueue(Queue):
         self.n = 0
 
     def add(self, x: object):
-        # todo
-        pass
+        # create a new node `u` storing data
+        u = self.Node(x)
+        # check the invariant
+        if self.n == 0:
+            self.head = u # assign head to new node
+        else: # link the current tail to the new node
+            self.tail.next = u
+        # make u the tail
+        self.tail = u
+        # increment num of nodes by 1
+        self.n += 1
 
     def remove(self) -> object:
         # check the precodition: if n = 0, return nil
