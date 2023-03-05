@@ -16,8 +16,19 @@ class DLList(List):
         self.n = 0
 
     def get_node(self, i: int) -> Node:
-        # todo
-        pass
+        # check precondition
+        if i < 0 or i >= self.n:
+            return self.dummy
+        # if i is in first half, start at head of the list and work forward
+        if i < self.n // 2:
+            p = self.dummy.next
+            for i in range(i):
+                p = p.next
+        else: # if i is in second half, start at the tail of the list and work backwards
+            p = self.dummy.prev
+            for i in range(self.n - 1):
+                p = p.prev
+        return p
 
     def get(self, i) -> object:
         # todo
