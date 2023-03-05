@@ -31,24 +31,61 @@ class DLList(List):
         return p
 
     def get(self, i) -> object:
-        # todo
-        pass
+        # check precondition
+        if i < 0 or i >= self.n:
+            raise IndexError()
+        # get i-th node using get_node(i)
+        u = self.get_node(i)
+        # return the data in the i-th node
+        return u
 
     def set(self, i: int, x: object) -> object:
-        # todo
-        pass
+        # check precondition 
+        if i < 0 or i >= self.n:
+            raise IndexError()
+        # get the i-th node
+        node = self.get_node(i)
+        # assign the current data in node i in a temp variable, will be replaced and returned 
+        old = node.x
+        # set the data in the i-th node to be x
+        node.x = x
+        # return old value
+        return old
 
     def add_before(self, w: Node, x: object) -> Node:
-        # todo
-        pass
+        # check precondition
+        if w is None:
+            raise Exception()
+        # create new node `u` with data x
+        u = self.Node(x)
+        # update the references for nodes
+        # for new node u
+        u.prev = w.prev 
+        u.next = w
+        # for node w
+        w.prev = u
+        # node previous to u
+        u.prev.next = u
+        # increment num of nodes by 1
 
     def add(self, i: int, x: object):
-        # todo
-        pass
+        # check precondition
+        if i < 0 or i > self.n:
+            raise Exception()
+        return self.add_before(self.get_node(i), x)
 
     def _remove(self, w: Node):
-        # todo
-        pass
+        # check precondition
+        if w is None:
+            raise Exception()
+        # update the references for w
+        wNext = w.next # node after w
+        wPrev = w.prev # node before w
+        wPrev.next = w.next
+        wNext.prev = w.prev
+        # decrement num of nodes
+        self.n -= 1
+        return w.x # return the data in node w
 
     def remove(self, i: int):
         if i < 0 or i > self.n:  raise IndexError()
