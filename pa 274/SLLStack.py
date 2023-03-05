@@ -18,8 +18,20 @@ class SLLStack(Stack):
         pass
 
     def pop(self) -> object:
-        # todo
-        pass
+        # check the precodition: if n = 0, return nil
+        if self.n == 0:
+            raise IndexError()
+        # temp variable storing value of head, return later
+        x = self.head.x
+        # remove the `head` by updating the head to be `head.next`
+        self.head = self.head.next
+        # decrement num of nodes by 1
+        self.n -= 1
+        # check the invariant: if `n` is 0, update the tail to be nil
+        if self.n == 0:
+            self.tail = None
+        # return the removed value
+        return x
 
     def size(self) -> int:
         return self.n
