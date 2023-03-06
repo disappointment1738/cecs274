@@ -22,11 +22,11 @@ class DLList(List):
         # if i is in first half, start at head of the list and work forward
         if i < self.n // 2:
             p = self.dummy.next
-            for i in range(i):
+            for k in range(i):
                 p = p.next
         else: # if i is in second half, start at the tail of the list and work backwards
-            p = self.dummy.prev
-            for i in range(self.n - 1):
+            p = self.dummy
+            for k in range(self.n - i):
                 p = p.prev
         return p
 
@@ -37,7 +37,7 @@ class DLList(List):
         # get i-th node using get_node(i)
         u = self.get_node(i)
         # return the data in the i-th node
-        return u
+        return u.x
 
     def set(self, i: int, x: object) -> object:
         # check precondition 
@@ -55,7 +55,7 @@ class DLList(List):
     def add_before(self, w: Node, x: object) -> Node:
         # check precondition
         if w is None:
-            raise Exception()
+            raise IndexError()
         # create new node `u` with data x
         u = self.Node(x)
         # update the references for nodes
@@ -67,22 +67,22 @@ class DLList(List):
         # node previous to u
         u.prev.next = u
         # increment num of nodes by 1
+        self.n += 1
+        return u
 
     def add(self, i: int, x: object):
         # check precondition
         if i < 0 or i > self.n:
-            raise Exception()
+            raise IndexError()
         return self.add_before(self.get_node(i), x)
 
     def _remove(self, w: Node):
         # check precondition
-        if w is None:
-            raise Exception()
+        if self.n == 0:
+            raise IndexError()
         # update the references for w
-        wNext = w.next # node after w
-        wPrev = w.prev # node before w
-        wPrev.next = w.next
-        wNext.prev = w.prev
+        w.prev.next = w.next
+        w.next.prev = w.prev
         # decrement num of nodes
         self.n -= 1
         return w.x # return the data in node w

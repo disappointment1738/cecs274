@@ -35,6 +35,7 @@ def menu_bookstore_system():
         3 Add a book by index to shopping cart
         4 Remove from the shopping cart
         5 Search book by infix
+        6 Get cart best-seller
         0 Return to main menu
         """)
         option = input()
