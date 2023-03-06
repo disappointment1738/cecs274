@@ -1,5 +1,6 @@
 import Calculator
 import BookStore
+import DLList
 
 
 def menu_calculator():
@@ -85,8 +86,11 @@ def main():
         elif option == "2":
             menu_bookstore_system()
         elif option == '3':
-            word = str(input('Enter a word/phrase:'))
-            print(f"Result: {word.DLList.isPalindrome()}")
+            word = DLList.DLList()
+            infix = str(input('Enter a word/phrase:'))
+            for letter in infix:
+                word.append(letter)
+            print(f"Result: {word.isPalindrome()}")
 
 
 if __name__ == "__main__":
