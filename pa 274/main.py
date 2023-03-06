@@ -1,6 +1,7 @@
 import Calculator
 import BookStore
 import DLList
+import time
 
 
 def menu_calculator():
@@ -61,8 +62,12 @@ def menu_bookstore_system():
             cnt = int(input("Enter max number of results: "))
             bookStore.searchBookByInfix(infix, cnt)
         elif option == '6':
-            #todo 
-            pass
+            print("getCartBestSeller returned")
+            start = time.time()
+            # call the necessary function
+            end = time.time()
+            totalTime = end - start
+            print(f"Completed in {totalTime} seconds")
 
         ''' 
         Add the menu options when needed
@@ -90,7 +95,10 @@ def main():
             infix = str(input('Enter a word/phrase:'))
             for letter in infix:
                 word.append(letter)
-            print(f"Result: {word.isPalindrome()}")
+            if word.isPalindrome():
+                print("Result: Palindrome")
+            else:
+                print("Result: Not a palindrome")
 
 
 if __name__ == "__main__":
