@@ -98,8 +98,32 @@ class DLList(List):
         self.add(self.n, x)
 
     def isPalindrome(self) -> bool:
-        # todo
-        pass
+        # if the size is 0 or 1, is automatically true
+        if self.n == 0 or self.n == 1:
+            return True
+        # compare 2 letters at the same time to check if they are the same
+        else:
+            forward = self.dummy.next
+            backward = self.dummy.prev
+            for i in range(self.n // 2):
+                # compare 2 letters at the same time
+                if forward.x == backward.x:
+                    forward = forward.next
+                    backward = backward.prev
+                else:
+                    return False # if different, it is not a palindrome, so return false
+            return True
+
+    def reverse(self):
+        # assign head to temp variable
+        current = self.dummy.next
+        # traverse through list and swap pointers 
+        while current is not self.dummy:
+            current.next, current.prev = current.prev, current.next # swap pointers
+            current = current.prev
+        # when reach tail, swap head and tail pointers
+        self.dummy.next, self.dummy.prev = self.dummy.prev, self.dummy.next
+        index = self.dummy.next
 
     def __str__(self):
         s = "["

@@ -2,7 +2,8 @@ import Book
 import ArrayList
 import ArrayQueue
 import RandomQueue
-#import DLList
+import DLList
+import MaxQueue
 #import SLLQueue
 #import ChainedHashTable
 #import BinarySearchTree
@@ -19,7 +20,7 @@ class BookStore:
 
     def __init__(self):
         self.bookCatalog = None
-        self.shoppingCart = ArrayQueue.ArrayQueue()
+        self.shoppingCart = MaxQueue.MaxQueue()
 
     def loadCatalog(self, fileName: str):
         '''
@@ -27,7 +28,7 @@ class BookStore:
                 book records are separated by  ^. The order is key, 
                 title, group, rank (number of copies sold) and similar books
         '''
-        self.bookCatalog = ArrayList.ArrayList()
+        self.bookCatalog = DLList.DLList()
         with open(fileName, encoding="utf8") as f:
             # The following line is the time that the computation starts
             start_time = time.time()

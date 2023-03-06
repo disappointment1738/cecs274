@@ -59,6 +59,9 @@ def menu_bookstore_system():
             infix = input("Introduce the query to search: ")
             cnt = int(input("Enter max number of results: "))
             bookStore.searchBookByInfix(infix, cnt)
+        elif option == '6':
+            #todo 
+            pass
 
         ''' 
         Add the menu options when needed
@@ -72,6 +75,7 @@ def main():
         print("""
         1 Calculator
         2 Bookstore System
+        3 Palindrome Test
         0 Exit/Quit
         """)
         option = input()
@@ -80,6 +84,9 @@ def main():
             menu_calculator()
         elif option == "2":
             menu_bookstore_system()
+        elif option == '3':
+            word = str(input('Enter a word/phrase:'))
+            print(f"Result: {word.DLList.isPalindrome()}")
 
 
 if __name__ == "__main__":
