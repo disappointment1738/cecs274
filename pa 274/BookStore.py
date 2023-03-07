@@ -3,7 +3,7 @@ import ArrayList
 import ArrayQueue
 import RandomQueue
 import DLList
-import pa 274.MaxQueue as MaxQueue
+import MaxQueue as MaxQueue
 #import SLLQueue
 #import ChainedHashTable
 #import BinarySearchTree
