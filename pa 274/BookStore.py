@@ -120,3 +120,13 @@ class BookStore:
             u = self.shoppingCart.remove()
             elapsed_time = time.time() - start_time
             print(f"removeFromShoppingCart {u} Completed in {elapsed_time} seconds")
+
+    def getCartBestSeller(self):
+        """
+        prints the title of the best booker seller amongst the rest of the books in the cart
+        """
+        start_time = time.time()
+        title = self.shoppingCart.max().title
+        elapsed_time = time.time() - start_time
+        print(title)
+        print(f"Completed in {elapsed_time} seconds")

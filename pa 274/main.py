@@ -62,7 +62,7 @@ def menu_bookstore_system():
             bookStore.searchBookByInfix(infix, cnt)
         elif option == '6':
             print("getCartBestSeller returned")
-            # call the necessary function
+            bookStore.getCartBestSeller()
 
         ''' 
         Add the menu options when needed
