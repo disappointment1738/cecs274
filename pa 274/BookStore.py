@@ -1,9 +1,10 @@
 import Book
-import ArrayList
-import ArrayQueue
-import RandomQueue
+# import ArrayList
+# import ArrayQueue
+# import RandomQueue
+import SLLQueue
 import DLList
-import MaxQueue as MaxQueue
+import MaxQueue
 #import SLLQueue
 #import ChainedHashTable
 #import BinarySearchTree
