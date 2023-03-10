@@ -45,7 +45,7 @@ class BookStore:
     def setRandomShoppingCart(self):
         q = self.shoppingCart
         start_time = time.time()
-        self.shoppingCart = RandomQueue.RandomQueue()
+        self.shoppingCart = MaxQueue.MaxQueue()
         while q.size() > 0:
             self.shoppingCart.add(q.remove())
         elapsed_time = time.time() - start_time
@@ -54,7 +54,7 @@ class BookStore:
     def setShoppingCart(self):
         q = self.shoppingCart
         start_time = time.time()
-        self.shoppingCart = ArrayQueue.ArrayQueue()
+        self.shoppingCart = MaxQueue.MaxQueue()
         while q.size() > 0:
             self.shoppingCart.add(q.remove())
         elapsed_time = time.time() - start_time

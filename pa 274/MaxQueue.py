@@ -12,15 +12,36 @@ class MaxQueue(SLLQueue):
         """
         adds an element to the end of this max queue
         """
-        #todo
-        pass
+        # add to the tail of SLLQueue
+        super().add(x)
+        # check if x is larger than max
+        if x > self.max():
+            self.max_deque = DLLDeque()
+            self.max_deque.add_first(x)
+        # otherwise, we need to place the element in DLList in decreasing order and discard any elements in the list that are smaller than x
+        else: 
+            self.max_deque.add_last(x)
+            current = self.max_deque.head
+            while current is not None:
+                if current.x < x:
+                    self.max_deque.remove()
 
     def remove(self) -> object:
         """
         removes and returns the element at the head of the max queue
         """
-        # todo
-        pass
+        # check the precondition
+        if self.n == 0:
+            raise IndexError()
+        # store data from head here, will be returned later
+        x = self.head.x
+        # remove from the head of SLLQueue
+        super().remove()
+        # check if the thingy removed is greater than the maximum
+        if x == self.max():
+            self.max_deque.remove_first()
+        # return the old data
+        return x
 
     def max(self):
         """
