@@ -6,7 +6,7 @@ class MaxQueue(SLLQueue):
     def __init__(self):
         SLLQueue.__init__(self)
         # NOTE: DLLDeque implements the Deque interface but also inherits all methods from DLList
-        self.max_deque == DLLDeque()
+        self.max_deque = DLLDeque()
     
     def add(self, x: object):
         """
@@ -14,17 +14,21 @@ class MaxQueue(SLLQueue):
         """
         # add to the tail of SLLQueue
         super().add(x)
+        # check precondition
+        if self.max_deque.n == 0:
+            self.max_deque.add_first(x)
         # check if x is larger than max
-        if x > self.max():
+        elif x > self.max():
             self.max_deque = DLLDeque()
             self.max_deque.add_first(x)
         # otherwise, we need to place the element in DLList in decreasing order and discard any elements in the list that are smaller than x
         else: 
+            # remove any elements less than x
+            for i in range(1, self.max_deque.n):
+                if x > self.max_deque.get_node(self.max_deque.n - 1).x:
+                    self.max_deque.remove_last()
+            # add element
             self.max_deque.add_last(x)
-            current = self.max_deque.head
-            while current is not None:
-                if current.x < x:
-                    self.max_deque.remove()
 
     def remove(self) -> object:
         """
