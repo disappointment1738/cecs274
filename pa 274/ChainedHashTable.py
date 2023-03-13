@@ -23,7 +23,7 @@ class ChainedHashTable(Set):
             t[i] = self.dtype
         return t
 
-    def hash(self, key: int) -> int:
+    def _hash(self, key: int) -> int:
         return self.z * hash(key) % (2 ** self.w) >> (self.w - self.d)
 
     def size(self) -> int:
