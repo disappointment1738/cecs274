@@ -20,7 +20,7 @@ class ChainedHashTable(Set):
     def alloc_table(self, n: int):
         t = np.zeros(n, dtype=object)
         for i in range(n):
-            t[i] = self.dtype
+            t[i] = self.dtype()
         return t
 
     def _hash(self, key: int) -> int:
