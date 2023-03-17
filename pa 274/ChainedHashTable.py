@@ -66,6 +66,7 @@ class ChainedHashTable(Set):
             # check the invariant
             if len(self.t) > 3 * self.n: 
                 self.resize()
+            return True # because we were able to remove the item
         # return false if nothing matched because there is nothing to remove
         return False
 
