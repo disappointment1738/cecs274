@@ -6,7 +6,7 @@ import SLLQueue
 import DLList
 import MaxQueue
 #import SLLQueue
-#import ChainedHashTable
+import ChainedHashTable
 #import BinarySearchTree
 #import BinaryHeap
 #import AdjacencyList
@@ -22,6 +22,7 @@ class BookStore:
     def __init__(self):
         self.bookCatalog = None
         self.shoppingCart = MaxQueue.MaxQueue()
+        self.bookIndices = ChainedHashTable.ChainedHashTable()
 
     def loadCatalog(self, fileName: str):
         '''
@@ -33,10 +34,11 @@ class BookStore:
         with open(fileName, encoding="utf8") as f:
             # The following line is the time that the computation starts
             start_time = time.time()
-            for line in f:
+            for line in f: # does this mean "For each row i in books.txt" ?
                 (key, title, group, rank, similar) = line.split("^")
-                s = Book.Book(key, title, group, rank, similar)
-                self.bookCatalog.append(s)
+                b = Book.Book(key, title, group, rank, similar)
+                self.bookCatalog.append(b)
+                self.bookIndices.add(key, self.bookIndices.size() - 1)
             # The following line is used to calculate the total time 
             # of execution
             elapsed_time = time.time() - start_time
@@ -130,3 +132,10 @@ class BookStore:
         elapsed_time = time.time() - start_time
         print(title)
         print(f"Completed in {elapsed_time} seconds")
+    
+    def addBookByKey(self, key):
+        """
+        adds the book with the given key to the shopping cart
+        """
+        if self.bookIndices.find(key) != None:
+            self.shoppingCart.add(self.bookIndices.find(key))
