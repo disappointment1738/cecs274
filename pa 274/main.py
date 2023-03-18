@@ -8,7 +8,9 @@ def menu_calculator():
     option = ""
     while option != '0':
         print("""
-        1 Check mathematical expression 
+        1 Check mathematical expression
+        2 Store variable values
+        3 Print expression with values
         0 Return to main menu
         """)
         option = input()
@@ -18,7 +20,23 @@ def menu_calculator():
                 print(f"{expression} is a valid expression")
             else:
                 print(f"{expression} is invalid expression")
-
+        elif option == '2':
+            variable = input("Enter a variable: ")
+            value = input("Enter its value: ")
+            infix = input("Enter another variable? Y/N")
+            if infix == 'Y':
+                # repeat the questions from above... maybe a while loop?
+                pass
+            else:
+                menu_calculator()
+        elif option == '3':
+            expression = input("Introduce the mathematical expression: ")
+            if calculator.matched_expression(expression):
+                # display the variables replaced by the existing values
+                pass
+            else:
+                print("Invalid expression")
+                menu_calculator()
         ''' 
         Add the menu options when needed
         '''
@@ -37,6 +55,7 @@ def menu_bookstore_system():
         4 Remove from the shopping cart
         5 Search book by infix
         6 Get cart best-seller
+        7 Add a book by key to shopping cart
         0 Return to main menu
         """)
         option = input()
@@ -61,9 +80,12 @@ def menu_bookstore_system():
             cnt = int(input("Enter max number of results: "))
             bookStore.searchBookByInfix(infix, cnt)
         elif option == '6':
-            print("getCartBestSeller returned")
+            print("getCartBestSeller returned ")
             bookStore.getCartBestSeller()
-
+        elif option == '7':
+            infix = input('Enter book key: ')
+            # if key exists: system will add and display "Added title: [book title]"
+            # otherwise, "Book not found." is printed
         ''' 
         Add the menu options when needed
         '''
