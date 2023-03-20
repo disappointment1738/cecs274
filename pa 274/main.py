@@ -21,19 +21,19 @@ def menu_calculator():
             else:
                 print(f"{expression} is invalid expression")
         elif option == '2':
-            variable = input("Enter a variable: ")
-            value = input("Enter its value: ")
-            infix = input("Enter another variable? Y/N")
-            if infix == 'Y':
-                # repeat the questions from above... maybe a while loop?
-                pass
+            while True:
+                variable = input("Enter a variable: ")
+                value = input("Enter its value: ")
+                calculator.set_variable(variable, value)
+                infix = input("Enter another variable? Y/N")
+                if infix == 'N':
+                    break
             else:
                 menu_calculator()
         elif option == '3':
             expression = input("Introduce the mathematical expression: ")
             if calculator.matched_expression(expression):
-                # display the variables replaced by the existing values
-                pass
+                calculator.print_expression(expression)
             else:
                 print("Invalid expression")
                 menu_calculator()
