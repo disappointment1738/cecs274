@@ -84,8 +84,7 @@ def menu_bookstore_system():
             bookStore.getCartBestSeller()
         elif option == '7':
             infix = input('Enter book key: ')
-            # if key exists: system will add and display "Added title: [book title]"
-            # otherwise, "Book not found." is printed
+            bookStore.addBookByKey(infix)
         ''' 
         Add the menu options when needed
         '''

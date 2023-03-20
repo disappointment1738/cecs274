@@ -38,7 +38,7 @@ class BookStore:
                 (key, title, group, rank, similar) = line.split("^")
                 b = Book.Book(key, title, group, rank, similar)
                 self.bookCatalog.append(b)
-                self.bookIndices.add(key, self.bookIndices.size() - 1)
+                self.bookIndices.add(key, self.bookCatalog.size() - 1)
             # The following line is used to calculate the total time 
             # of execution
             elapsed_time = time.time() - start_time
@@ -137,5 +137,12 @@ class BookStore:
         """
         adds the book with the given key to the shopping cart
         """
-        if self.bookIndices.find(key) != None:
-            self.shoppingCart.add(self.bookIndices.find(key))
+        start_time = time.time()
+        book = self.bookIndices.find(key) # finds the book from given key
+        if book is not None: # checks if the index exists
+            self.shoppingCart.add(self.bookCatalog.get(book)) # adds to cart from the book catalog
+            print(f"Added title: {self.bookCatalog.get(book).title}")
+        else:
+            print("Book not found.")
+        elapsed_tme = time.time() - start_time
+        print(f"addBookByKey Completed in {elapsed_tme} seconds")

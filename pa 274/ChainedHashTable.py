@@ -33,15 +33,15 @@ class ChainedHashTable(Set):
         # determine the bin of the list where the item is stored
         bin = self._hash(key)
         # iterate over the list at that bin index and check if the keys match (return value if they do)
-        for i in range(self.t[bin].size() - 1):
-            if self.t[bin].get(i).value:
+        for i in range(self.t[bin].size()):
+            if self.t[bin].get(i).key == key:
                 return self.t[bin].get(i).value
         # return None if the loop doesn't return anything, then none of the keys match
         return None
 
     def add(self, key: object, value: object):
-        # check the precondition: if item with key exists, return false
-        if self.find(key)!= None:
+        # check the precondition: if item with key exists, can't add
+        if self.find(key) is not None:
             return False
         # check the invariant: do we need to resize?
         if self.n == len(self.t):
@@ -60,15 +60,16 @@ class ChainedHashTable(Set):
         # find the bin index where the node with the given key should be stored
         bin = self._hash(key)
         # iterate over the nodes in that bin, and check if the item key matches the given key
-        for i in range(self.t[bin].size() - 1):
-            self.t[bin].remove(i)
-            self.n -= 1 # decrement num of elements by 1
-            # check the invariant
-            if len(self.t) > 3 * self.n: 
-                self.resize()
-            return True # because we were able to remove the item
-        # return false if nothing matched because there is nothing to remove
-        return False
+        for i in range(self.t[bin].size()):
+            if self.t[bin].get(i).key == key:
+                self.t[bin].remove(i)
+                self.n -= 1 # decrement num of elements by 1
+                # check the invariant
+                if len(self.t) > 3 * self.n: 
+                    self.resize()
+                return True # because we were able to remove the item
+        # return nil if nothing matched because there is nothing to remove
+        return None
 
     def resize(self):
         # check the num of items in the table is the same as the num of bins.
@@ -79,11 +80,12 @@ class ChainedHashTable(Set):
         else:
             self.d -= 1
         # create new temp table
-        temp = self.alloc_temp(2 ** self.d)
+        temp = self.alloc_table(2 ** self.d)
         # copy every list in table t into the table temp
-        for j in range(len(self.t) - 1):
-            for i in range(self.t[j].size() - 1):
+        for j in range(len(self.t)):
+            for i in range(self.t[j].size()):
                 bin = self._hash(self.t[j].get(i).key)
+                temp[bin].add(0, self.t[j].get(i))
         # reassign t to temp
         self.t = temp
 
