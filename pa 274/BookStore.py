@@ -1,5 +1,5 @@
 import Book
-# import ArrayList
+import ArrayList
 # import ArrayQueue
 # import RandomQueue
 import SLLQueue
@@ -7,7 +7,7 @@ import DLList
 import MaxQueue
 #import SLLQueue
 import ChainedHashTable
-#import BinarySearchTree
+import BinarySearchTree
 #import BinaryHeap
 #import AdjacencyList
 import time
@@ -23,6 +23,7 @@ class BookStore:
         self.bookCatalog = None
         self.shoppingCart = MaxQueue.MaxQueue()
         self.bookIndices = ChainedHashTable.ChainedHashTable()
+        self.sortedTitleIndices = BinarySearchTree.BinarySearchTree()
 
     def loadCatalog(self, fileName: str):
         '''
@@ -30,7 +31,7 @@ class BookStore:
                 book records are separated by  ^. The order is key, 
                 title, group, rank (number of copies sold) and similar books
         '''
-        self.bookCatalog = DLList.DLList()
+        self.bookCatalog = ArrayList.ArrayList()
         with open(fileName, encoding="utf8") as f:
             # The following line is the time that the computation starts
             start_time = time.time()
@@ -38,7 +39,7 @@ class BookStore:
                 (key, title, group, rank, similar) = line.split("^")
                 b = Book.Book(key, title, group, rank, similar)
                 self.bookCatalog.append(b)
-                self.bookIndices.add(key, self.bookCatalog.size() - 1)
+                self.sortedTitleIndices.add(key, self.bookCatalog.size() - 1)
             # The following line is used to calculate the total time 
             # of execution
             elapsed_time = time.time() - start_time

@@ -1,6 +1,6 @@
 import numpy as np
 import ArrayStack
-#import BinaryTree
+import BinaryTree
 import ChainedHashTable
 #import DLList
 #import operator

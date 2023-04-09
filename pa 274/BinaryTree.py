@@ -39,7 +39,7 @@ class BinaryTree(Tree):
         d = 0
         current_node = u
         # move up the tree until u is the root
-        while current_node == self.r:
+        while current_node != self.r:
             current_node = current_node.parent
             d += 1 # increment edge by 1
         return d

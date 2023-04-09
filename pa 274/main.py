@@ -1,7 +1,8 @@
 import Calculator
 import BookStore
 import DLList
-
+import BinarySearchTree
+import BinaryTree
 
 def menu_calculator():
     calculator = Calculator.Calculator()

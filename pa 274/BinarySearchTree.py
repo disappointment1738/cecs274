@@ -85,6 +85,26 @@ class BinarySearchTree(BinaryTree, Set):
                 return current
         return parent # b/c key wasn't found in while loop
 
+    # 3 for BookStore.py, Project 5
+    def findKeyOrSmallest(self, key: object) -> BinaryTree.Node:
+        """
+        Method returns the node containing the given key if it exists.
+        Otherwise, it returns the node with the smallest key greater than the given key.
+        """
+        current = self.r
+        smallest = None
+        while current is not None:
+            if key < current.key:
+                # SEARCH RIGHT SUBTREE
+                current = current.right
+            elif key > current.key: 
+                # SEARCH LEFT SUBTREE
+                smallest = current
+                current = current.left
+            else:
+                smallest = current
+        return smallest
+
     def _add_child(self, p: BinaryTree.Node, u: BinaryTree.Node) -> bool:
         """
         helper method; adds node u as the child of node p, assuming node p has at most 1 child
