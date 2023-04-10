@@ -94,11 +94,11 @@ class BinarySearchTree(BinaryTree, Set):
         current = self.r
         smallest = None
         while current is not None:
-            if key < current.key:
+            if key < current.k:
                 # SEARCH LEFT SUBTREE
                 smallest = current
                 current = current.left
-            elif key > current.key: 
+            elif key > current.k: 
                 # SEARCH RIGHT SUBTREE
                 current = current.right
             else:

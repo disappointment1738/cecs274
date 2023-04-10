@@ -70,11 +70,13 @@ class Calculator:
                 raise ValueError("Missing right operand.")
             # checks if root.k is defined in the ChainedHashTable
             elif root.k is not None:
-                return root.v
+                return float(root.v)
             else:
                 raise ValueError(f"Missing definition for variable {root.k}")
+        elif root.left is not None:
+            return self._evalulate(root.left)
         else:
-            raise ValueError("Invalid expression")
+            return self._evaluate(root.right)
 
     def evaluate(self, exp):
         parseTree = self._build_parse_tree(exp)

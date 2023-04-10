@@ -42,9 +42,7 @@ def menu_calculator():
                 menu_calculator()
         elif option == '4':
             infix = input('Enter the expression: ')
-            print(f'Evaluating expression: {calculator.print_expression(infix)}')
             variables = [x for x in re.split('\W+', infix) if x.isalnum()] 
-            value = False
             for variable in variables:
                 if calculator.dict.find(variable):
                     if variable == variables[-1]:
@@ -52,9 +50,8 @@ def menu_calculator():
                         calculator.print_expression(infix)
                         print(f'Result: {calculator.evaluate(infix)}')
                 else:
-                    print(f'Result: {calculator.evaluate(infix)}')
+                    print('Result: Error - Not all variable values are defined.')
                     break
-            menu_calculator()
         ''' 
         Add the menu options when needed
         '''
@@ -106,10 +103,11 @@ def menu_bookstore_system():
             bookStore.addBookByKey(infix)
         elif option == '8':
             prefix = input("Prefix:")
-            if prefix == '':
-                print("Error: Prefix was not found.")
+            newBook = bookStore.addBookByPrefix(prefix)
+            if newBook is not None:
+                print(f"Added first matched title:", newBook)
             else:
-                print(f"Added first matched title: {bookStore.addBookByPrefix(prefix)}")
+                print("Error: Prefix was not found.")
         ''' 
         Add the menu options when needed
         '''
