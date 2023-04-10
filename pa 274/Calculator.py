@@ -27,13 +27,50 @@ class Calculator:
         return a.size() == 0
 
     def build_parse_tree(self, exp: str) -> str:
-        # todo
-        pass
+        # check if the expression is valid
+        if not self.matched_expression(exp):
+            raise ValueError
+        t = BinaryTree.BinaryTree() # set t as a binary tree
+        current = t.r # temp variable of tree's root
+        for token in exp:
+            node = t.Node()
+            if token == '(':
+                # add a left child to current
+                current.insert_left(node)
+                # update current
+                current = current.left
+            elif token == '+' or token == '-' or token == '/' or token == '*':
+                current.set_val(token)
+                current.set_key(token)
+                # add right child to current
+                current.insert_right(node)
+                # update current
+                current = current.right
+            elif token == ')':
+                # update current
+                current = current.parent
+            else: # when token is a variable 
+                current.set_key(token)
+                current.set_val(dict.find(token)) # chainedHashTable storing variable with associated values
+                current = current.parent
+        return t
 
     def _evaluate(self, root):
         op = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
-        # todo
-        pass
+        # check if u holds an operator
+        if root.left is not None and root.right is not None:
+            op = root.k
+            return self._evaluate(root.left) op self._evaluate(u.right)
+        elif root.left is None and root.right is None: # u holds a variable
+            if root.k is None:
+                raise ValueError("Missing right operand.")
+            # checks if root.k is defined in the ChainedHashTable
+            elif ChainedHashTable.find(root.k) is not None:
+                return root.v
+            else:
+                raise ValueError(f"Missing definition for variable {root.k}")
+        else:
+            raise ValueError
 
     def evaluate(self, exp):
         parseTree = self.build_parse_tree(exp)
