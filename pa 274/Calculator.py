@@ -3,7 +3,7 @@ import ArrayStack
 import BinaryTree
 import ChainedHashTable
 #import DLList
-#import operator
+import operator
 import re
 
 
@@ -26,14 +26,18 @@ class Calculator:
                     return False
         return a.size() == 0
 
-    def build_parse_tree(self, exp: str) -> str:
+    def _build_parse_tree(self, exp: str) -> str:
         # check if the expression is valid
         if not self.matched_expression(exp):
             raise ValueError
         t = BinaryTree.BinaryTree() # set t as a binary tree
-        current = t.r # temp variable of tree's root
-        for token in exp:
-            node = t.Node()
+        t.r = BinaryTree.BinaryTree.Node() # root of tree t
+        current = t.r # temp variable 
+        # split exp into list of tokens
+        split = re.split(r"(\W)", exp) # splits exp
+        expression = [x for x in split if x != '' and x != ' '] # takes away variable name
+        for token in expression:
+            node = BinaryTree.BinaryTree.Node()
             if token == '(':
                 # add a left child to current
                 current.insert_left(node)
@@ -51,7 +55,7 @@ class Calculator:
                 current = current.parent
             else: # when token is a variable 
                 current.set_key(token)
-                current.set_val(dict.find(token)) # chainedHashTable storing variable with associated values
+                current.set_val(self.dict.find(token)) # chainedHashTable storing variable with associated values
                 current = current.parent
         return t
 
@@ -59,21 +63,21 @@ class Calculator:
         op = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
         # check if u holds an operator
         if root.left is not None and root.right is not None:
-            op = root.k
-            return self._evaluate(root.left) op self._evaluate(u.right)
+            op = op[root.k]
+            return op(self._evaluate(root.left), self._evaluate(root.right))
         elif root.left is None and root.right is None: # u holds a variable
             if root.k is None:
                 raise ValueError("Missing right operand.")
             # checks if root.k is defined in the ChainedHashTable
-            elif ChainedHashTable.find(root.k) is not None:
+            elif root.k is not None:
                 return root.v
             else:
                 raise ValueError(f"Missing definition for variable {root.k}")
         else:
-            raise ValueError
+            raise ValueError("Invalid expression")
 
     def evaluate(self, exp):
-        parseTree = self.build_parse_tree(exp)
+        parseTree = self._build_parse_tree(exp)
         return self._evaluate(parseTree.r)
 
     def print_expression(self, exp):
