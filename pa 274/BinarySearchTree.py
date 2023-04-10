@@ -41,7 +41,7 @@ class BinarySearchTree(BinaryTree, Set):
         # finds the matching key
         u = self._find_eq(key)
         if u is None:
-            raise ValueError("Key is not in tree")
+            raise ValueError
         value = u.v # value corresponding to key
         self._remove_node(u) # helper method
         return value
@@ -95,14 +95,14 @@ class BinarySearchTree(BinaryTree, Set):
         smallest = None
         while current is not None:
             if key < current.key:
-                # SEARCH RIGHT SUBTREE
-                current = current.right
-            elif key > current.key: 
                 # SEARCH LEFT SUBTREE
                 smallest = current
                 current = current.left
+            elif key > current.key: 
+                # SEARCH RIGHT SUBTREE
+                current = current.right
             else:
-                smallest = current
+                return current
         return smallest
 
     def _add_child(self, p: BinaryTree.Node, u: BinaryTree.Node) -> bool:
@@ -111,15 +111,15 @@ class BinarySearchTree(BinaryTree, Set):
         """
         # check the precondition: if p is nil, make u the root
         if p is None:
-            r = u
+            self.r = u
         # determine the positioning of u
         else:
             # make u the left child
             if u.k < p.k:
-                p.left = u.k
+                p.left = u
             # make u the right child
             elif u.k > p.k:
-                p.right = u.k
+                p.right = u
             # cannot add since the key exists
             else:
                 return False
@@ -156,7 +156,6 @@ class BinarySearchTree(BinaryTree, Set):
         # assign p to child.parent
         if child is not None:
             child.parent = p # set p as child's parent
-        
         # decrement num of nodes by 1
         self.n -= 1
 
