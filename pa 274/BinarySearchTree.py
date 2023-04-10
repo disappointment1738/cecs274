@@ -91,19 +91,17 @@ class BinarySearchTree(BinaryTree, Set):
         Method returns the node containing the given key if it exists.
         Otherwise, it returns the node with the smallest key greater than the given key.
         """
-        current = self.r
-        smallest = None
+        current = self.r # current become the root
+        small = None
         while current is not None:
             if key < current.k:
-                # SEARCH LEFT SUBTREE
-                smallest = current
+                small = current
                 current = current.left
-            elif key > current.k: 
-                # SEARCH RIGHT SUBTREE
+            elif key > current.k:
                 current = current.right
             else:
                 return current
-        return smallest
+        return small
 
     def _add_child(self, p: BinaryTree.Node, u: BinaryTree.Node) -> bool:
         """

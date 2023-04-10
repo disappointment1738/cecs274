@@ -148,12 +148,12 @@ class BookStore:
         elapsed_tme = time.time() - start_time
         print(f"addBookByKey Completed in {elapsed_tme} seconds")
 
-    def addBookByPrefix(self, prefix: str):
+    def addBookByPrefix(self, prefix):
         """
         adds the first matched book containing prefix in the title
         Book titles are sorted in alphabetical order
         """
-        book = self.sortedTitleIndices.findKeyOrSmallest(prefix)
+        book = self.sortedTitleIndices.find_smallest_greater_node(prefix)
         if book.k[0:len(prefix)] == prefix and len(prefix) > 0:
             self.shoppingCart.add(self.bookCatalog.get(book.v))
             print(f'Added first matched title: {book.k}')
