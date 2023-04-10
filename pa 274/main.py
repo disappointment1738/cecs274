@@ -105,7 +105,7 @@ def menu_bookstore_system():
             prefix = input("Prefix:")
             newBook = bookStore.addBookByPrefix(prefix)
             if newBook is not None:
-                print(f"Added first matched title:", newBook)
+                print("Added first matched title:", newBook)
             else:
                 print("Error: Prefix was not found.")
         ''' 
