@@ -147,3 +147,10 @@ class BookStore:
             print("Book not found.")
         elapsed_tme = time.time() - start_time
         print(f"addBookByKey Completed in {elapsed_tme} seconds")
+
+    def addBookByPrefix(self, prefix):
+        """
+        adds the first matched book containing prefix in the title
+        Book titles are sorted in alphabetical order
+        """
+        pass

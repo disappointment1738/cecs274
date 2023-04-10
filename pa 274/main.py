@@ -3,6 +3,7 @@ import BookStore
 import DLList
 import BinarySearchTree
 import BinaryTree
+import re
 
 def menu_calculator():
     calculator = Calculator.Calculator()
@@ -12,6 +13,7 @@ def menu_calculator():
         1 Check mathematical expression
         2 Store variable values
         3 Print expression with values
+        4 Evaluate expression
         0 Return to main menu
         """)
         option = input()
@@ -38,6 +40,21 @@ def menu_calculator():
             else:
                 print("Invalid expression")
                 menu_calculator()
+        elif option == '4':
+            infix = input('Enter the expression: ')
+            print(f'Evaluating expression: {calculator.print_expression(infix)}')
+            variables = [x for x in re.split('\W+', infix) if x.isalnum()] 
+            value = False
+            for variable in variables:
+                if calculator.dict.find(variable):
+                    if variable == variables[-1]:
+                        print("Evaluating expression: ", end='')
+                        calculator.print_expression(infix)
+                        print(f'Result: {calculator.evaluate(infix)}')
+                else:
+                    print(f'Result: {calculator.evaluate(infix)}')
+                    break
+            menu_calculator()
         ''' 
         Add the menu options when needed
         '''
@@ -57,6 +74,7 @@ def menu_bookstore_system():
         5 Search book by infix
         6 Get cart best-seller
         7 Add a book by key to shopping cart
+        8 Add a book by title prefix to shopping cart
         0 Return to main menu
         """)
         option = input()
@@ -86,6 +104,12 @@ def menu_bookstore_system():
         elif option == '7':
             infix = input('Enter book key: ')
             bookStore.addBookByKey(infix)
+        elif option == '8':
+            prefix = input("Prefix:")
+            if prefix == '':
+                print("Error: Prefix was not found.")
+            else:
+                print(f"Added first matched title: {bookStore.addBookByPrefix(prefix)}")
         ''' 
         Add the menu options when needed
         '''
