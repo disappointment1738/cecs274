@@ -50,7 +50,7 @@ class BinaryHeap(Queue, Tree):
     def remove(self):
         # check precodition
         if self.n == 0:
-            raise IndexError
+            raise IndexError("Can not remove from an empty heap.")
         # store value of root
         x = self.a[0]
         # overwrite root with the last element
