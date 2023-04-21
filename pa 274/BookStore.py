@@ -8,7 +8,7 @@ import MaxQueue
 #import SLLQueue
 import ChainedHashTable
 import BinarySearchTree
-#import BinaryHeap
+import BinaryHeap
 #import AdjacencyList
 import time
 
@@ -159,3 +159,66 @@ class BookStore:
             print(f'Added first matched title: {book.k}')
         else:
             print('Error: Prefix was not found.')
+    
+    def bestsellers_with(self, infix, structure, n=0):
+        best_sellers = None
+
+        if structure == 1:
+            best_sellers = BinarySearchTree.BinarySearchTree()
+        elif structure == 2:
+            best_sellers = BinaryHeap.BinaryHeap()
+        else:
+            print("Invalid data structure.")
+            return None
+
+        if best_sellers is not None:
+            if n == "":
+                n = 0
+            n = int(n)
+            if infix == "":
+                print("Invalid infix.")
+                return None
+            elif n < 0:
+                print("Invalid number of titles.")
+                return None
+            else:
+                start_time = time.time()
+
+                if structure == 1:
+                    for book in self.bookCatalog:
+                        if infix in book.title:
+                            best_sellers.add(book.rank, book)
+                    bs = best_sellers.in_order()
+                    bs.reverse()
+
+                    if n == 0:
+                        for book in bs:
+                            print(book.v)
+                    else:
+                        n2 = n
+                        for book in bs:
+                            if n2 == 0:
+                                break
+                            print(book.v)
+                            n2 -= 1
+
+                if structure == 2:
+                    for book in self.bookCatalog:
+                        if infix in book.title:
+                            book.rank = book.rank * -1
+                            best_sellers.add(book)
+                    if n == 0:
+                        for book in range(best_sellers.size()):
+                            book = best_sellers.remove()
+                            book.rank *= -1
+                            print(book)
+                    else:
+                        n2 = n
+                        while not best_sellers.size() == 0 and n2 > 0:
+                            book = best_sellers.remove()
+                            book.rank = book.rank * -1
+                            print(book)
+                            n2 -= 1
+
+                elapsed_time = time.time() - start_time
+                print(f"Displayed bestsellers_with({infix}, {structure}, {n}) in {elapsed_time} seconds")

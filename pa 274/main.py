@@ -72,6 +72,7 @@ def menu_bookstore_system():
         6 Get cart best-seller
         7 Add a book by key to shopping cart
         8 Add a book by title prefix to shopping cart
+        9 Search best-sellers with infix
         0 Return to main menu
         """)
         option = input()
@@ -103,6 +104,11 @@ def menu_bookstore_system():
             bookStore.addBookByKey(infix)
         elif option == '8':
             bookStore.addBookByPrefix(input('Enter prefix: '))
+        elif option == '9':
+            infix = input("Enter infix: ")
+            structure = int(input("Enter structure (1 or 2): "))
+            n = input("Enter max number of titles: ")
+            bookStore.bestsellers_with(infix, structure, n)
         ''' 
         Add the menu options when needed
         '''
