@@ -43,6 +43,8 @@ class BinaryHeap(Queue, Tree):
             self._resize()
         # append x to heap
         self.a[self.n] = x
+        # increment num of nodes by 1
+        self.n += 1
         # move element to its correct position in heap
         self._bubble_up_last()
         return True
@@ -88,12 +90,12 @@ class BinaryHeap(Queue, Tree):
         while q:
             node = q.pop(0)
             result.append(node)
-            left = left(self.a.tolist().index(node))
-            if left < self.n:
-                q.append(self.a[left])
-            right = right(self.a.tolist().index(node))
-            if right < self.n:
-                q.append(self.a[right])
+            leftIdx = left(self.a.tolist().index(node))
+            if leftIdx < self.n:
+                q.append(self.a[leftIdx])
+            rightIdx = right(self.a.tolist().index(node))
+            if rightIdx < self.n:
+                q.append(self.a[rightIdx])
         return result
 
     def in_order(self) -> list:
@@ -103,9 +105,9 @@ class BinaryHeap(Queue, Tree):
 
     def in_order_help(self, i: int, result: list):
         if i < self.n:
-            self._in_order(left(i), result)
+            self.in_order_help(left(i), result)
             result.append(self.a[i])
-            self._in_order(right(i), result)
+            self.in_order_help(right(i), result)
 
     def post_order(self) -> list:
         result = []
@@ -117,8 +119,8 @@ class BinaryHeap(Queue, Tree):
     def post_order_help(self, i: int, result: list):
         if i >= self.n:
             return
-        self._post_order(left(i), result)
-        self._post_order(right(i), result)
+        self.post_order_help(left(i), result)
+        self.post_order_help(right(i), result)
         result.append(self.a[i])
 
     def pre_order(self) -> list:
@@ -142,12 +144,12 @@ class BinaryHeap(Queue, Tree):
 
     def _bubble_up_last(self):
         i = self.n - 1
-        parent = parent(i)
-        while i > 0 and self.a[i] < self.a[parent]:
+        parentIdx = parent(i)
+        while i > 0 and self.a[i] < self.a[parentIdx]:
             # swap parent and child
-            self.a[i], self.a[parent] = self.a[parent], self.a[i] 
-            i = parent # update index
-            parent = parent(i) # update the new parent
+            self.a[i], self.a[parentIdx] = self.a[parentIdx], self.a[i] 
+            i = parentIdx # update index
+            parentIdx = parent(i) # update the new parent
 
     def _resize(self):
         # create new array with capacity 2n
@@ -161,18 +163,18 @@ class BinaryHeap(Queue, Tree):
     def _trickle_down_root(self):
         i = 0 # current index of element (at root rn)
         # find children
-        left = left(i)
-        right = right(i)
+        leftIdx = left(i)
+        rightIdx = right(i)
         # when i is less than some stuff and when a[i] is larger than its kids
-        while i < self.n and left < self.n and right <= self.n and (self.a[left] < self.a[i] or self.a[right] < self.a[i]):
-            indexes = {i: self.a[i], left: self.a[left], right: self.a[right]}
+        while i < self.n and leftIdx < self.n and rightIdx <= self.n and (self.a[leftIdx] < self.a[i] or self.a[rightIdx] < self.a[i]):
+            indexes = {i: self.a[i], leftIdx: self.a[leftIdx], rightIdx: self.a[rightIdx]}
             # find the minimum element in a[i], a[left], a[right]
             minIdx = min(indexes, key=indexes.get)
             self.a[i], self.a[minIdx] = self.a[minIdx], self.a[i]
             i = minIdx # update index
             # update children for new index i 
-            left = left(i)
-            right = right(i)
+            leftIdx = left(i)
+            rightIdx = right(i)
 
     def __str__(self):
         return str(self.a[0:self.n])

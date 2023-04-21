@@ -42,10 +42,10 @@ def _merge(a0: List, a1: List, a: List):
     i0 =0 # current index of a0
     i1= 0 # current index of a1
     for i in range(len(a)-1):
-        if i0 == len(a0)-1: # we copied all elements from a0
+        if i0 == len(a0): # we copied all elements from a0
             a[i] = a1[i1]
             i1 += 1
-        elif i1 == len(a1)-1: # we copied all elements from a1
+        elif i1 == len(a1): # we copied all elements from a1
             a[i] = a0[i0]
             i0 += 1
         elif a0[i0] <= a1[i1]:
