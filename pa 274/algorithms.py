@@ -60,7 +60,7 @@ def merge_sort(a: List):
     if len(a) <= 1:
         return a # because it's already sorted
     mid = len(a) // 2
-    a0 = a[:mid-1] # first half of array
+    a0 = a[:mid] # first half of array
     a1 = a[mid:] # second half of array
     # recusively sort
     merge_sort(a0)
@@ -69,14 +69,32 @@ def merge_sort(a: List):
 
 
 def _quick_sort_f(a: List, start, end):
-    # todo
+    # call partition
     pass
 
 
 def _quick_sort_r(a: List, start, end):
-    # todo
+    # swap pivot and the first element
+    # call partition
     pass
 
+def partition(a: list, l: int, r: int):
+    pivot = a[l]
+    l += 1
+    while l <= r:
+        # loop for l
+        while a[l] <= pivot:
+            # todo
+            pass
+        # loop for r
+        while a[r] > pivot:
+            # todo
+            pass
+        # swap a[l] and a[r]
+        a[l], a[r] = a[r], a[l]
+    # swap pivot and a[r]
+    a[0], a[r] = a[r], a[0] # where a[0] is the pivot
+    return a
 
 def quick_sort(a: List, p=True):
     """
