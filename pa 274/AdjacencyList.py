@@ -15,24 +15,16 @@ class AdjacencyList(Graph):
             self.adj[i] = ArrayList.ArrayList()
 
     def add_edge(self, i : int, j : int):
-        # todo
-        # add the edge (i, j) to E
+        # precondition
         if 0 <= i and j < self.n:
             for k in range(len(self.adj[i])):
                 if self.adj[i].get(k) == j:
                     return False
             self.adj[i].append(j)
             return True
-        # return False
-        # if i >= self.n or j >= self.n:
-        #     return False
-        # self.adj[i].append(j)
 
     def remove_edge(self, i : int, j : int):
-        # todo
-        # remove the edge (i,j) from E
-        # if i >= self.n or j >= self.n:
-        #     return False
+        # precondition
         if 0 <= i and j < self.n:
             for k in range(len(self.adj[i])):
                 if self.adj[i].get(k) == j:
@@ -41,10 +33,7 @@ class AdjacencyList(Graph):
         return False
 
     def has_edge(self, i : int, j: int) ->bool:
-        # todo
-        # returns true if the edge (i,j) exists in E
-        # if i >= self.n or j >= self.n:
-        #     return False
+        # precondition
         if 0 <= i and j < self.n:
             for k in range(len(self.adj[i])):
                 if self.adj[i].get(k) == j:
@@ -52,12 +41,11 @@ class AdjacencyList(Graph):
         return False
 
     def out_edges(self, i) -> List:
-        # todo
-        # returns a list of all integers j such that (i,j) in E
+        """returns a list of all integers j such that (i,j) in E"""
         return self.adj[i]
 
     def in_edges(self, j) -> List:
-        # todo
+        # precondition
         if j > self.n:
             return False
         incoming = []
@@ -67,9 +55,8 @@ class AdjacencyList(Graph):
         return incoming
 
 
-
     def bfs(self, r : int):
-        # todo
+        # empty list
         traversal = []
         seen = [False] * self.n
         q = ArrayQueue.ArrayQueue()
@@ -77,11 +64,9 @@ class AdjacencyList(Graph):
         q.add(r)
         traversal.append(r)
         seen[r] = True
-
         while q.size() != 0:
             current = q.remove()
             neighbors = self.out_edges(current)
-
             for i in neighbors:
                 if seen[i] is False:
                     q.add(i)
@@ -90,7 +75,6 @@ class AdjacencyList(Graph):
         return traversal
 
     def dfs(self, r : int):
-        # todo
         # initialize
         traversal = []
         s = ArrayStack.ArrayStack()
@@ -104,11 +88,9 @@ class AdjacencyList(Graph):
                 traversal.append(current)
                 seen[current] = True
             neighbors = self.out_edges(current)
-            # neighbors.reverse()
             for i in reversed(neighbors):
                 if seen[i] is False:
                     s.push(i)
-            # start_index += 1
         return traversal
 
     def size(self):
